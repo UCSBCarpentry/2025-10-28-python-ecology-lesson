@@ -58,7 +58,10 @@ contact: 'team@carpentries.org'
 # - another-learner.md
 
 # Order of episodes in your lesson
-episodes: 
+episodes:
+- n001-getting-started.md
+- n002-visualizing-matplotlib.md
+- n003-data-structures.md
 - 00-before-we-start.md
 - 01-short-introduction-to-Python.md
 - 02-starting-with-data.md

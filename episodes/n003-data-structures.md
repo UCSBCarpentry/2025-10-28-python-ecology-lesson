@@ -23,15 +23,15 @@ exercises: 20
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## The pandas `DataFrame`
-We just spent quite a bit of time learning how to create visualisations from the `complete_old` data, but we did not talk much about what `complete_old` is.
+We just spent quite a bit of time learning how to create visualisations from the `samples` data, but we did not talk much about what `samples` is.
 You may remember that we loaded the data into Python with the `pandas.read_csv` function.
 The output of `read_csv` is a _data frame_: a common way of representing tabular data in a programming language.
-To be precise, `complete_old` is an _object_ of _type_ `DataFrame`.
+To be precise, `samples` is an _object_ of _type_ `DataFrame`.
 In Python, pretty much everything you work with is an object of some type.
 The `type` function can be used to tell you the type of any object you pass to it.
 
 ```python
-type(complete_old)
+type(samples)
 ```
 
 ```output
@@ -46,7 +46,7 @@ Dataframe objects carry many other methods, including some that are useful when 
 Consider the output of `describe`:
 
 ```python
-complete_old.describe()
+samples.describe()
 ```
 
 ```output
@@ -67,7 +67,7 @@ It is always worth performing an initial "sniff test" with these: if there are m
 `info` provides an overview of the columns included in the dataframe:
 
 ```python
-complete_old.info()
+samples.info()
 ```
 
 ```output
@@ -115,13 +115,13 @@ Let's work with a couple of the columns independently to demonstrate this.
 To work with a single column of a dataframe, we can refer to it by name in two different ways:
 
 ```python
-complete_old["species_id"]
+samples["species_id"]
 ```
 
 or
 
 ```python
-complete_old.species_id # this only works if there are no spaces in the column name (note the underscore used here)
+samples.species_id # this only works if there are no spaces in the column name (note the underscore used here)
 ```
 
 ```output
@@ -155,7 +155,7 @@ Dataframe objects are collections of the series "glued together" with a shared _
 If we choose a different column of the dataframe, we get another series with a different data type:
 
 ```python
-complete_old['weight']
+samples['weight']
 ```
 
 ```output
@@ -178,7 +178,7 @@ The data type of the series influences the things that can be done with/to it.
 For example, sorting works differently for these two series, with the numeric values in the `weight` series sorted from largest to smallest and the character strings in `species_id` sorted alphabetically:
 
 ```python
-complete_old['weight'].sort_values()
+samples['weight'].sort_values()
 ```
 
 ```output
@@ -198,7 +198,7 @@ Name: weight, Length: 16878, dtype: float64
 ```
 
 ```python
-complete_old['species_id'].sort_values()
+samples['species_id'].sort_values()
 ```
 
 ```output
@@ -320,7 +320,7 @@ Especially when using functions from libraries you have imported into your progr
 For example, what happens if we try to access a column that does not exist in our dataframe?
 
 ```python
-complete_old["wegiht"] # misspelling the 'weight' column name
+samples["wegiht"] # misspelling the 'weight' column name
 ```
 
 ```error
@@ -345,7 +345,7 @@ The above exception was the direct cause of the following exception:
 
 KeyError                                  Traceback (most recent call last)
 Cell In[131], line 1
-----> 1 complete_old["wegiht"]
+----> 1 samples["wegiht"]
 
 File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/frame.py:4107, in DataFrame.__getitem__(self, key)
    4105 if self.columns.nlevels > 1:
@@ -685,8 +685,8 @@ A column can be manually coerced (or _recast_) into a different `dtype`, provide
 For example, the integer values in the `plot_id` column of our dataframe can be converted to floating point numbers:
 
 ```python
-complete_old['plot_id'] = complete_old['plot_id'].astype('float')
-complete_old['plot_id']
+samples['plot_id'] = samples['plot_id'].astype('float')
+samples['plot_id']
 ```
 
 ```output
@@ -709,14 +709,14 @@ Name: plot_id, Length: 16878, dtype: float64
 But the string values of `species_id` cannot be converted to numeric data:
 
 ```python
-complete_old.species_id = complete_old.species_id.astype('int')
+samples.species_id = samples.species_id.astype('int')
 ```
 
 ```error
 ---------------------------------------------------------------------------
 ValueError                                Traceback (most recent call last)
 Cell In[101], line 1
-----> 1 complete_old.species_id = complete_old.species_id.astype('int64')
+----> 1 samples.species_id = samples.species_id.astype('int64')
 
 File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/generic.py:6662, in NDFrame.astype(self, dtype, copy, errors)
    6656     results = [
@@ -753,7 +753,7 @@ ValueError: invalid literal for int() with base 10: 'NL'
 ::::::::::::::::::::::: solution
 
 ```python
-complete_old['plot_id'].astype("int")
+samples['plot_id'].astype("int")
 ```
 
 ```output
@@ -796,7 +796,7 @@ You may have noticed some during our initial exploration of the dataframe.
 (Note the `NaN` values in the first five rows of the `weight` column below.)
 
 ```python
-complete_old.head()
+samples.head()
 ```
 
 ```output
@@ -813,7 +813,7 @@ The output of the `info` method includes a count of the _non-null_ values -- tha
 
 
 ```python
-complete_old.info()
+samples.info()
 ```
 
 ```output
@@ -844,7 +844,7 @@ Many of the other columns also have missing values.
 The ouput above demonstrates that pandas can distinguish these `NaN` values from the actual data and indeed they will be ignored for some tasks, such as calculation of the summary statistics provided by `describe`.
 
 ```python
-complete_old.describe()
+samples.describe()
 ```
 
 ```output
@@ -864,7 +864,7 @@ It is up to us to decide how best to handle those missing values.
 We could remove the rows containing missing data, accepting the loss of all data for that observation:
 
 ```python
-complete_old.dropna().head()
+samples.dropna().head()
 ```
 
 ```output
@@ -880,7 +880,7 @@ record_id
 But we should take note that this removes more than 3000 rows from the dataframe!
 
 ```python
-len(complete_old)
+len(samples)
 ```
 
 ```output
@@ -888,7 +888,7 @@ len(complete_old)
 ```
 
 ```python
-len(complete_old.dropna())
+len(samples.dropna())
 ```
 
 ```output
@@ -896,12 +896,12 @@ len(complete_old.dropna())
 ```
 
 Instead, we could _fill_ all of the missing values with something else.
-For example, let's make a copy of the `complete_old` dataframe then populate the missing values in the `weight` column of that copy with the mean of all the non-missing weights.
+For example, let's make a copy of the `samples` dataframe then populate the missing values in the `weight` column of that copy with the mean of all the non-missing weights.
 There are a few parts to that operation, which are tackled one at a time below.
 
 ```python
-mean_weight = complete_old['weight'].mean() # the 'mean' method calculates the mean of the non-null values in the column
-df1 = complete_old.copy() # making a copy to work with so that we do not edit our original data
+mean_weight = samples['weight'].mean() # the 'mean' method calculates the mean of the non-null values in the column
+df1 = samples.copy() # making a copy to work with so that we do not edit our original data
 df1["weight"] = df1['weight'].fillna(mean_weight) # the 'fillna' method fills all missing values with the provided value
 df1.head()
 ```
@@ -1026,7 +1026,7 @@ Why did we need to use the `copy` method to duplicate the dataframe above if var
 Why not assign a new variable with the value of the existing dataframe object?
 
 ```python
-df2 = complete_old
+df2 = samples
 ```
 
 This gets to _mutablity_: a feature of Python that has caused headaches for many novices in the past!
@@ -1069,7 +1069,7 @@ This takes practice and time to get used to.
 The key thing to remember is that **you should use the `copy` method to make a copy of your dataframes** to avoid accidentally modifying the data in the original.
 
 ```python
-df2 = complete_old.copy()
+df2 = samples.copy()
 ```
 
 

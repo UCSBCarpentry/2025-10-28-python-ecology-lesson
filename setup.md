@@ -8,21 +8,17 @@ title: Setup
 
 Data for this lesson is from the
 [Portal Project Teaching Database](https://figshare.com/articles/Portal_Project_Teaching_Database/1314459).
-Specifically, we use the following eight data files:
+Specifically, we use the following data files:
 
-- [bouldercreek\_09\_2013.txt](data/bouldercreek_09_2013.txt)
+- [surveys_complete_77_89.csv](https://datacarpentry.github.io/R-ecology-lesson/data/cleaned/surveys_complete_77_89.csv)
+- [lakes.csv](data/lakes.csv)
 - [plots.csv](https://ndownloader.figshare.com/files/3299474)
-- [portal\_mammals.sqlite](https://ndownloader.figshare.com/files/11188550)
 - [species.csv](https://ndownloader.figshare.com/files/3299483)
-- [speciesSubset.csv](data/speciesSubset.csv)
 - [surveys.csv](https://ndownloader.figshare.com/files/10717177)
+- [bouldercreek\_09\_2013.txt](data/bouldercreek_09_2013.txt)
+- [speciesSubset.csv](data/speciesSubset.csv)
 - [surveys2001.csv](data/yearly_files/surveys2001.csv)
 - [surveys2002.csv](data/yearly_files/surveys2002.csv)
-
-Please download them (by clicking on the corresponding links) and move them to the same directory, or
-[download all the files as a zip](data/portal-teachingdb-master.zip)
-which will give you everything in a single compressed file. You'll need to unzip
-this file after downloading it.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::

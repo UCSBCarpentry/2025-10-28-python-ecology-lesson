@@ -23,7 +23,12 @@ exercises: 20
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## The pandas `DataFrame`
-We just spent quite a bit of time learning how to create visualisations from the `samples` data, but we did not talk much about what `samples` is.
+We just spent quite a bit of time learning how to create visualisations from the `samples` data, but we did not talk much about what `samples` is. Let's first load the data again:
+
+```python
+samples = pd.read_csv('../data/surveys_complete_77_89.csv')
+```
+
 You may remember that we loaded the data into Python with the `pandas.read_csv` function.
 The output of `read_csv` is a _data frame_: a common way of representing tabular data in a programming language.
 To be precise, `samples` is an _object_ of _type_ `DataFrame`.
@@ -115,7 +120,7 @@ Let's work with a couple of the columns independently to demonstrate this.
 To work with a single column of a dataframe, we can refer to it by name in two different ways:
 
 ```python
-samples["species_id"]
+samples['species_id']
 ```
 
 or
@@ -320,7 +325,7 @@ Especially when using functions from libraries you have imported into your progr
 For example, what happens if we try to access a column that does not exist in our dataframe?
 
 ```python
-samples["wegiht"] # misspelling the 'weight' column name
+samples['wegiht'] # misspelling the 'weight' column name
 ```
 
 ```error
@@ -345,7 +350,7 @@ The above exception was the direct cause of the following exception:
 
 KeyError                                  Traceback (most recent call last)
 Cell In[131], line 1
-----> 1 samples["wegiht"]
+----> 1 samples['wegiht']
 
 File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/frame.py:4107, in DataFrame.__getitem__(self, key)
    4105 if self.columns.nlevels > 1:
@@ -610,8 +615,8 @@ Can you guess the `dtype` of each series created below?
 Run the code to check whether you were right.
 
 ```python
-int_str = pd.Series([1, "two", 3])
-str_flt = pd.Series(["four", 5.0, "six"])
+int_str = pd.Series([1, 'two', 3])
+str_flt = pd.Series(['four', 5.0, 'six'])
 ```
 
 ::::::::::::::::::::: solution
@@ -661,7 +666,8 @@ Tanganyika,=6.0,29.3
 We see a non-numeric `dtype` for the latitude column (`object`) when we load the data into a dataframe.
 
 ```python
-lakes = pd.read_csv('lakes.csv')
+lakes = pd.read_csv('../data/lakes.csv')
+print(lakes)
 lakes.info()
 ```
 
@@ -709,7 +715,7 @@ Name: plot_id, Length: 16878, dtype: float64
 But the string values of `species_id` cannot be converted to numeric data:
 
 ```python
-samples.species_id = samples.species_id.astype('int')
+samples.species_id = samples['species_id'].astype('int')
 ```
 
 ```error
@@ -753,7 +759,7 @@ ValueError: invalid literal for int() with base 10: 'NL'
 ::::::::::::::::::::::: solution
 
 ```python
-samples['plot_id'].astype("int")
+samples['plot_id'].astype('int')
 ```
 
 ```output
@@ -773,7 +779,7 @@ Name: plot_id, Length: 16878, dtype: int64
 ```
 
 ```python
-surveys_df['weight'].astype("int")
+surveys_df['weight'].astype('int')
 ```
 
 ```error
@@ -902,7 +908,7 @@ There are a few parts to that operation, which are tackled one at a time below.
 ```python
 mean_weight = samples['weight'].mean() # the 'mean' method calculates the mean of the non-null values in the column
 df1 = samples.copy() # making a copy to work with so that we do not edit our original data
-df1["weight"] = df1['weight'].fillna(mean_weight) # the 'fillna' method fills all missing values with the provided value
+df1['weight'] = df1['weight'].fillna(mean_weight) # the 'fillna' method fills all missing values with the provided value
 df1.head()
 ```
 
@@ -980,11 +986,11 @@ Python makes each evaluation as it needs to in order to proceed with the next, b
 This means that we could have filled the missing values in the weight column of our dataframe copy in a single line:
 
 ```python
-df1["weight"] = df1['weight'].fillna(df1["weight"].mean())
+df1['weight'] = df1['weight'].fillna(df1['weight'].mean())
 ```
 
-First, the mean weight is calculated (`df1["weight"].mean()` is evaluated).
-Then the result of that evaluation is passed into `fillna` and the result of the filling operation (`df1['weight'].fillna(<RESULT OF PREVIOUS>)`) is assigned to `df1["weight"]`.
+First, the mean weight is calculated (`df1['weight'].mean()` is evaluated).
+Then the result of that evaluation is passed into `fillna` and the result of the filling operation (`df1['weight'].fillna(<RESULT OF PREVIOUS>)`) is assigned to `df1['weight']`.
 
 #### Variable naming
 You are going to name a lot of variables in Python!
@@ -1055,7 +1061,7 @@ some_more_species = some_species # another name for the same list object
 This can have unintended consequences and lead to much confusion!
 
 ```
-some_more_species[2] = "CV"
+some_more_species[2] = 'CV'
 some_species
 ```
 

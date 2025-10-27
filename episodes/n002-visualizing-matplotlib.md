@@ -88,7 +88,7 @@ We'll load the data in the csv into Python and name this new object `samples`.
 For this, we can use the `pandas` library and its `.read_csv()` function, like shown here:
 
 ```python
-samples = pd.read_csv("surveys_complete_77_89.csv")
+samples = pd.read_csv('https://tinyurl.com/ucsbcarp-data')
 ```
 
 Here we have created a new object that we can reference later in our code.
@@ -207,10 +207,10 @@ This is the case for `.head()`, `.tail()`, and `.info()`: they are methods that 
 pandas makes it easy to start plotting your data with the `.plot()` method.
 By passing arguments to this method, we can tell Pandas how we want the plot to look.
 
-With the following code, we will make a scatter plot (argument `kind = "scatter"`) to analyze the relationship between the weight (which will plot in the x axis, argument `x = "weight"`) and the hindfoot length (in the y axis, argument `y = "hindfoot_length"`) of the animals sampled at the study site.
+With the following code, we will make a scatter plot (argument `kind = 'scatter'`) to analyze the relationship between the weight (which will plot in the x axis, argument `x = 'weight'`) and the hindfoot length (in the y axis, argument `y = 'hindfoot_length'`) of the animals sampled at the study site.
 
 ```python
-samples.plot(x = "weight", y = "hindfoot_length", kind = "scatter")
+samples.plot(x = 'weight', y = 'hindfoot_length', kind = 'scatter')
 ```
 
 :::::::::::::::::::::::::::::::::::::::::: spoiler
@@ -221,7 +221,7 @@ When coding, you'll often find the case where you can get to the same result usi
 In this case, the creators of pandas make it possible to make the previous plot with the`.plot.scatter` method, without having to specify the "kind" argument.
 
 ```python
-samples.plot.scatter(x = "weight", y = "hindfoot_length")
+samples.plot.scatter(x = 'weight', y = 'hindfoot_length')
 ```
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -230,8 +230,8 @@ But you may have noticed that parts of our scatter plot have many overlapping po
 We can adjust the transparency of the points using the `alpha` argument, which takes a value between 0 and 1.
 
 ```python
-samples.plot(x = "weight", y = "hindfoot_length",
-                  kind = "scatter", alpha = 0.2)
+samples.plot(x = 'weight', y = 'hindfoot_length',
+                  kind = 'scatter', alpha = 0.2)
 ```
 
 With transparency added to the points, we can more clearly observe a clustering of data points into several more densely populated regions of the scatter plot.
@@ -250,11 +250,11 @@ Here is the link to the documentation: [https://pandas.pydata.org/docs/reference
 
 :::::::::::::::  solution
 
-Continuing from our last line of code where we added the "alpha" argument, we can add the argument `c = "green"` to achieve what we want.
+Continuing from our last line of code where we added the "alpha" argument, we can add the argument `c = 'green'` to achieve what we want.
 
 ```python
-samples.plot(x = "weight", y = "hindfoot_length",
-                  kind="scatter", alpha = 0.2, c = "green")
+samples.plot(x = 'weight', y = 'hindfoot_length',
+                  kind='scatter', alpha = 0.2, c = 'green')
 ```
 
 :::::::::::::::::::::::::
@@ -267,7 +267,7 @@ In this case, pandas wants us to use different arguments.
 We'll use the `column` argument to specify what is the column we want to analyze.
 
 ```python
-samples.plot(column = "hindfoot_length", kind = "box")
+samples.plot(column = 'hindfoot_length', kind = 'box')
 ```
 
 The box plot shows the median hindfoot length is around 32mm (represented by the line inside the box) and most values lie between 20 and 35 mm (which are the borders of the box, representing the 1st and 3rd quartile of the data, respectively).
@@ -276,7 +276,7 @@ We could further expand this analysis, and see the distribution of this variable
 We can add a `by` argument, saying by which variable we want do disaggregate the box plot.
 
 ```python
-samples.plot(column = "hindfoot_length", by = "plot_type", kind = "box")
+samples.plot(column = 'hindfoot_length', by = 'plot_type', kind = 'box')
 ```
 
 As shown in the previous image, the x-axis labels overlap with each other, which makes them unreadable.
@@ -308,8 +308,8 @@ This gives us a plot just as we had it before, but now onto an axis object that 
 
 ```python
 fig, axis = plt.subplots()
-samples.plot(column = "hindfoot_length", by = "plot_type",
-                  kind = "box", ax = axis)
+samples.plot(column = 'hindfoot_length', by = 'plot_type',
+                  kind = 'box', ax = axis)
 ```
 
 To start, we can rotate the x-axis labels 90 degrees to make them readable.
@@ -317,8 +317,8 @@ For this, we use the `.tick_params()` method on the `axis` object.
 
 ```python
 fig, axis = plt.subplots()
-samples.plot(column = "hindfoot_length", by = "plot_type",
-                  kind = "box", ax = axis)
+samples.plot(column = 'hindfoot_length', by = 'plot_type',
+                  kind = 'box', ax = axis)
 axis.tick_params(axis = 'x', rotation = 90)
 ```
 
@@ -329,12 +329,12 @@ Some lines might only include subtle changes, so take care not to miss anything 
 
 ```python
 fig, axis = plt.subplots()
-samples.plot(column = "hindfoot_length", by = "plot_type",
-                  kind = "box", ax = axis)
+samples.plot(column = 'hindfoot_length', by = 'plot_type',
+                  kind = 'box', ax = axis)
 axis.tick_params(axis='x', rotation = 90)
-axis.set_title("Distribution of hindfoot lenght across plot types")
-axis.set_xlabel("Plot Types")
-axis.set_ylabel("Hindfoot Length (mm)")
+axis.set_title('Distribution of hindfoot lenght across plot types')
+axis.set_xlabel('Plot Types')
+axis.set_ylabel('Hindfoot Length (mm)')
 ```
 
 ### Making multiple subplots
@@ -344,7 +344,7 @@ For example, let's say we want two plots (or axes), organized in two columns and
 This will be useful in a minute, when we arrange our scatter plot and box plot in a single figure.
 
 ```python
-fig, axes = plt.subplots(nrows = 1, ncols = 2) # note the variable name is "axes" here rather than "axis" used above
+fig, axes = plt.subplots(nrows = 1, ncols = 2) # note the variable name is 'axes' here rather than 'axis' used above
 ```
 
 The `axes` object contains two objects, which correspond to the two sets of axes.
@@ -357,10 +357,10 @@ Here is the code to have two subplots, one with the scatter plot (on `axes[0]`),
 
 ```python
 fig, axes = plt.subplots(nrows = 1, ncols = 2)
-samples.plot(x = "weight", y = "hindfoot_length", kind="scatter",
+samples.plot(x = 'weight', y = 'hindfoot_length', kind='scatter',
                   alpha = 0.2, ax = axes[0])
-samples.plot(column = "hindfoot_length", by = "plot_type",
-                  kind = "box", ax = axes[1])
+samples.plot(column = 'hindfoot_length', by = 'plot_type',
+                  kind = 'box', ax = axes[1])
 ```
 
 As shown before, Matplotlib allows us to customize every aspect of our figure.
@@ -371,19 +371,19 @@ We also use the `.tight_layout()` method, to automatically adjust the padding be
 
 ```python
 fig, axes = plt.subplots(nrows = 1, ncols = 2)
-samples.plot(x = "weight", y = "hindfoot_length", kind="scatter", alpha = 0.2, ax = axes[0])
-axes[0].set_title("Weight vs. Hindfoot Length")
-axes[0].set_xlabel("Weight (g)")
-axes[0].set_ylabel("Hindfoot Length (mm)")
+samples.plot(x = 'weight', y = 'hindfoot_length', kind='scatter', alpha = 0.2, ax = axes[0])
+axes[0].set_title('Weight vs. Hindfoot Length')
+axes[0].set_xlabel('Weight (g)')
+axes[0].set_ylabel('Hindfoot Length (mm)')
 
-samples.plot(column = "hindfoot_length", by = "plot_type",
-                  kind = "box", ax = axes[1])
-axes[1].tick_params(axis = "x", rotation = 90)
-axes[1].set_title("Hindfoot Length by Plot Type")
-axes[1].set_xlabel("Plot Types")
-axes[1].set_ylabel("Hindfoot Length (mm)")
+samples.plot(column = 'hindfoot_length', by = 'plot_type',
+                  kind = 'box', ax = axes[1])
+axes[1].tick_params(axis = 'x', rotation = 90)
+axes[1].set_title('Hindfoot Length by Plot Type')
+axes[1].set_xlabel('Plot Types')
+axes[1].set_ylabel('Hindfoot Length (mm)')
 
-fig.suptitle("Analysis of Hindfoot Length variable", fontsize=16)
+fig.suptitle('Analysis of Hindfoot Length variable', fontsize=16)
 fig.tight_layout()
 ```
 
@@ -444,24 +444,24 @@ Notice what has changed from our previous code.
 
 ```python
 fig, axes = plt.subplots(nrows = 1, ncols = 3, figsize = (10,7), sharey = True)
-samples.plot(x = "weight", y = "hindfoot_length", kind="scatter",
+samples.plot(x = 'weight', y = 'hindfoot_length', kind='scatter',
                   alpha = 0.2, ax = axes[0])
-axes[0].set_title("Weight vs. Hindfoot Length")
-axes[0].set_xlabel("Weight (g)")
-axes[0].set_ylabel("Hindfoot Length (mm)")
+axes[0].set_title('Weight vs. Hindfoot Length')
+axes[0].set_xlabel('Weight (g)')
+axes[0].set_ylabel('Hindfoot Length (mm)')
 
-samples.plot(column = "hindfoot_length", by = "plot_type",
-                  kind = "box", ax = axes[1])
-axes[1].tick_params(axis =  "x", rotation = 90)
-axes[1].set_title("Hindfoot Length by Plot Type")
-axes[1].set_xlabel("Plot Types")
-axes[1].set_ylabel("Hindfoot Length (mm)2")
+samples.plot(column = 'hindfoot_length', by = 'plot_type',
+                  kind = 'box', ax = axes[1])
+axes[1].tick_params(axis =  'x', rotation = 90)
+axes[1].set_title('Hindfoot Length by Plot Type')
+axes[1].set_xlabel('Plot Types')
+axes[1].set_ylabel('Hindfoot Length (mm)2')
 
-samples.plot(column = "hindfoot_length", orientation="horizontal",
-                  legend = False, kind = "hist", ax = axes[2])
-axes[2].set_title("Hindfoot Length Histogram")
+samples.plot(column = 'hindfoot_length', orientation='horizontal',
+                  legend = False, kind = 'hist', ax = axes[2])
+axes[2].set_title('Hindfoot Length Histogram')
 
-fig.suptitle("Analysis of Hindfoot Length variable", fontsize=16)
+fig.suptitle('Analysis of Hindfoot Length variable', fontsize=16)
 fig.tight_layout()
 ```
 
@@ -477,7 +477,7 @@ The only required argument is the file path in your computer where you want to s
 Matplotlib recognizes the extension used in the filename and supports (on most computers) png, pdf, ps, eps and svg formats.
 
 ```python
-fig.savefig("images/hindfoot_analysis.png")
+fig.savefig('images/hindfoot_analysis.png')
 ```
 
 :::::::::::::::::::::::::::::::::::::::  challenge
@@ -519,8 +519,8 @@ Refer to the [introduction to seaborn](https://seaborn.pydata.org/tutorial/intro
   
   ```python
   import seaborn as sns
-  sns.scatterplot(data = samples, x="weight", y="hindfoot_length",
-                hue="sex", alpha = 0.2)
+  sns.scatterplot(data = samples, x='weight', y='hindfoot_length',
+                hue='sex', alpha = 0.2)
   ```
 
 - [**Plotly:**](https://plotly.com/python/) A tool to explore if you want web-based interactive visualizations where you can hover over data points to get additional information or zoom in to get a closer look.

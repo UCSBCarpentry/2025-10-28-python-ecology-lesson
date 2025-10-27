@@ -25,6 +25,86 @@ This episode is a modified copy of the [Getting Started episode](https://library
 
 Python is a popular programming language for tasks such as data collection, cleaning, and analysis. Python can help you to create reproducible workflows to accomplish repetitive tasks more efficiently.
 
+## What is Python?
+
+Python is a general purpose programming language that supports rapid development of data analytics
+applications.  The word "Python" is used to refer to both, the programming language and the tool
+that executes the scripts written in Python language.
+
+Its main advantages are:
+
+- Free
+- Open-source
+- Available on all major platforms (macOS, Linux, Windows)
+- Supported by Python Software Foundation
+- Supports multiple programming paradigms
+- Has large community
+- Rich ecosystem of third-party packages
+
+*So, why do you need Python for data analysis?*
+
+- **Easy to learn:**
+  Python is easier to learn than other programming languages. This is important because lower barriers
+  mean it is easier for new members of the community to get up to speed.
+
+- **Reproducibility:**
+  Reproducibility is the ability to obtain the same results using the same dataset(s) and analysis.
+  
+  Data analysis written as a Python script can be reproduced on any platform.  Moreover, if you
+  collect more or correct existing data, you can quickly re-run your analysis!
+  
+  An increasing number of journals and funding agencies expect analyses to be reproducible,
+  so knowing Python will give you an edge with these requirements.
+
+- **Versatility:**
+  Python is a versatile language that integrates with many existing applications to enable something
+  completely amazing.  For example, one can use Python to generate manuscripts, so that if you need to
+  update your data, analysis procedure, or change something else, you can quickly regenerate all the
+  figures and your manuscript will be updated automatically.
+  
+  Python can read text files, connect to databases, and many other data formats, on your computer or
+  on the web.
+
+- **Interdisciplinary and extensible:**
+  Python provides a framework that allows anyone to combine approaches from different research
+  (but not only) disciplines to best suit your analysis needs.
+
+- **Python has a large and welcoming community:**
+  Thousands of people use Python daily. Many of them are willing to help you through mailing lists and
+  websites, such as [Stack Overflow][stack-overflow]  and [Anaconda community
+  portal][anaconda-community].
+
+- **Free and Open-Source Software (FOSS)... and Cross-Platform:**
+  We know we have already said that but it is worth repeating.
+  
+## Research Project: Best Practices
+
+It is a good idea to keep a set of related data, analyses, and text in a single folder.
+All scripts and text files within this folder can then use relative paths to the data files.
+Working this way makes it a lot easier to move around your project and share it with others.
+
+### Organizing your working directory
+
+Using a consistent folder structure across your projects will help you keep things organized,
+and will also make it easy to find/file things in the future. This can be especially helpful
+when you have multiple projects. In general, you may wish to create separate directories for
+your scripts, data, and documents.
+
+- **`data/`**: Use this folder to store your raw data. For the sake of transparency and provenance,
+  you should always keep a copy of your **raw data**. If you need to cleanup data, do it
+  programmatically (*i.e.* with scripts) and make sure to separate cleaned up data from the raw data.
+  For example, you can store raw data in files `./data/raw/` and clean data in `./data/clean/`.
+
+- **`documents/`**: Use this folder to store outlines, drafts, and other text.
+
+- **`code/`**: Use this folder to store your (Python) scripts for data cleaning, analysis, and
+  plotting that you use in this particular project.
+
+You may need to create additional directories depending on your project needs, but these should form
+the backbone of your project's directory. For this workshop, we will need a `data/` folder to store
+our raw data, and we will later create a `data_output/` folder when we learn how to export data as
+CSV files.
+
 
 ## Use JupyterLab to edit and run Python code.
   

@@ -207,6 +207,8 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#why-python">Why Python?</a></li>
+<li><a href="#what-is-python">What is Python?</a></li>
+<li><a href="#research-project-best-practices">Research Project: Best Practices</a></li>
 <li><a href="#use-jupyterlab-to-edit-and-run-python-code.">Use JupyterLab to edit and run Python code.</a></li>
 <li><a href="#the-jupyterlab-interface">The JupyterLab Interface</a></li>
         </ul></div><!--/div.accordion-body-->
@@ -430,6 +432,87 @@ Started episode</a> of the Python Intro for Libraries lesson.</p>
 collection, cleaning, and analysis. Python can help you to create
 reproducible workflows to accomplish repetitive tasks more
 efficiently.</p>
+</section><section><h2 class="section-heading" id="what-is-python">What is Python?<a class="anchor" aria-label="anchor" href="#what-is-python"></a></h2>
+<hr class="half-width"><p>Python is a general purpose programming language that supports rapid
+development of data analytics applications. The word “Python” is used to
+refer to both, the programming language and the tool that executes the
+scripts written in Python language.</p>
+<p>Its main advantages are:</p>
+<ul><li>Free</li>
+<li>Open-source</li>
+<li>Available on all major platforms (macOS, Linux, Windows)</li>
+<li>Supported by Python Software Foundation</li>
+<li>Supports multiple programming paradigms</li>
+<li>Has large community</li>
+<li>Rich ecosystem of third-party packages</li>
+</ul><p><em>So, why do you need Python for data analysis?</em></p>
+<ul><li><p><strong>Easy to learn:</strong> Python is easier to learn than
+other programming languages. This is important because lower barriers
+mean it is easier for new members of the community to get up to
+speed.</p></li>
+<li>
+<p><strong>Reproducibility:</strong> Reproducibility is the ability
+to obtain the same results using the same dataset(s) and analysis.</p>
+<p>Data analysis written as a Python script can be reproduced on any
+platform. Moreover, if you collect more or correct existing data, you
+can quickly re-run your analysis!</p>
+<p>An increasing number of journals and funding agencies expect analyses
+to be reproducible, so knowing Python will give you an edge with these
+requirements.</p>
+</li>
+<li>
+<p><strong>Versatility:</strong> Python is a versatile language that
+integrates with many existing applications to enable something
+completely amazing. For example, one can use Python to generate
+manuscripts, so that if you need to update your data, analysis
+procedure, or change something else, you can quickly regenerate all the
+figures and your manuscript will be updated automatically.</p>
+<p>Python can read text files, connect to databases, and many other data
+formats, on your computer or on the web.</p>
+</li>
+<li><p><strong>Interdisciplinary and extensible:</strong> Python
+provides a framework that allows anyone to combine approaches from
+different research (but not only) disciplines to best suit your analysis
+needs.</p></li>
+<li><p><strong>Python has a large and welcoming community:</strong>
+Thousands of people use Python daily. Many of them are willing to help
+you through mailing lists and websites, such as [Stack
+Overflow][stack-overflow] and [Anaconda community
+portal][anaconda-community].</p></li>
+<li><p><strong>Free and Open-Source Software (FOSS)… and
+Cross-Platform:</strong> We know we have already said that but it is
+worth repeating.</p></li>
+</ul></section><section><h2 class="section-heading" id="research-project-best-practices">Research Project: Best Practices<a class="anchor" aria-label="anchor" href="#research-project-best-practices"></a></h2>
+<hr class="half-width"><p>It is a good idea to keep a set of related data, analyses, and text
+in a single folder. All scripts and text files within this folder can
+then use relative paths to the data files. Working this way makes it a
+lot easier to move around your project and share it with others.</p>
+<div class="section level3">
+<h3 id="organizing-your-working-directory">Organizing your working directory<a class="anchor" aria-label="anchor" href="#organizing-your-working-directory"></a></h3>
+<p>Using a consistent folder structure across your projects will help
+you keep things organized, and will also make it easy to find/file
+things in the future. This can be especially helpful when you have
+multiple projects. In general, you may wish to create separate
+directories for your scripts, data, and documents.</p>
+<ul><li><p><strong><code>data/</code></strong>: Use this folder to store
+your raw data. For the sake of transparency and provenance, you should
+always keep a copy of your <strong>raw data</strong>. If you need to
+cleanup data, do it programmatically (<em>i.e.</em> with scripts) and
+make sure to separate cleaned up data from the raw data. For example,
+you can store raw data in files <code>./data/raw/</code> and clean data
+in <code>./data/clean/</code>.</p></li>
+<li><p><strong><code>documents/</code></strong>: Use this folder to
+store outlines, drafts, and other text.</p></li>
+<li><p><strong><code>code/</code></strong>: Use this folder to store
+your (Python) scripts for data cleaning, analysis, and plotting that you
+use in this particular project.</p></li>
+</ul><p>You may need to create additional directories depending on your
+project needs, but these should form the backbone of your project’s
+directory. For this workshop, we will need a <code>data/</code> folder
+to store our raw data, and we will later create a
+<code>data_output/</code> folder when we learn how to export data as CSV
+files.</p>
+</div>
 </section><section><h2 class="section-heading" id="use-jupyterlab-to-edit-and-run-python-code-">Use JupyterLab to edit and run Python code.<a class="anchor" aria-label="anchor" href="#use-jupyterlab-to-edit-and-run-python-code-"></a></h2>
 <hr class="half-width"><p>For having a common platform to run our Python code, we’ll use the <a href="https://carpentryworkshop.lsit.ucsb.edu/" class="external-link">JupyterHub instance
 provided by LSIT</a>. If you want to install Python on your machine, <a href="index.html#setup">the setup instructions</a> for details on how to

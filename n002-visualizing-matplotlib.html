@@ -108,11 +108,11 @@
   Data Analysis and Visualization in Python for Ecologists
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 2%" class="percentage">
-    2%
+<aside class="col-md-12 lesson-progress"><div style="width: 5%" class="percentage">
+    5%
   </div>
   <div class="progress data">
-    <div class="progress-bar data" role="progressbar" style="width: 2%" aria-valuenow="2" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar data" role="progressbar" style="width: 5%" aria-valuenow="5" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -238,7 +238,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="00-before-we-start.html">4. Before we start</a>
+        <a href="03-index-slice-subset.html">4. Indexing, Slicing and Subsetting DataFrames in Python</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -247,7 +247,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="01-short-introduction-to-Python.html">5. Short Introduction to Programming in Python</a>
+        <a href="05-merging-data.html">5. Combining DataFrames with Pandas</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -256,70 +256,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="02-starting-with-data.html">6. Starting With Data</a>
-    </div><!--/div.accordion-header-->
-
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush8">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading8">
-        <a href="03-index-slice-subset.html">7. Indexing, Slicing and Subsetting DataFrames in Python</a>
-    </div><!--/div.accordion-header-->
-
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush9">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading9">
-        <a href="04-data-types-and-format.html">8. Data Types and Formats</a>
-    </div><!--/div.accordion-header-->
-
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush10">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading10">
-        <a href="05-merging-data.html">9. Combining DataFrames with Pandas</a>
-    </div><!--/div.accordion-header-->
-
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush11">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading11">
-        <a href="06-loops-and-functions.html">10. Data Workflows and Automation</a>
-    </div><!--/div.accordion-header-->
-
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush12">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading12">
-        <a href="07-visualization-ggplot-python.html">11. Making Plots With plotnine</a>
-    </div><!--/div.accordion-header-->
-
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush13">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading13">
-        <a href="08-putting-it-all-together.html">12. Data Ingest and Visualization - Matplotlib and Pandas</a>
-    </div><!--/div.accordion-header-->
-
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush14">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading14">
-        <a href="09-working-with-sql.html">13. Accessing SQLite Databases Using Python and Pandas</a>
+        <a href="06-loops-and-functions.html">6. Data Workflows and Automation</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -383,7 +320,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Data visualization with Pandas and Matplotlib</h1>
-        <p>Last updated on 2025-10-27 |
+        <p>Last updated on 2025-10-28 |
 
         <a href="https://github.com/datacarpentry/python-ecology-lesson/edit/main/episodes/n002-visualizing-matplotlib.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -455,7 +392,7 @@ Matplotlib using the common nicknames <code>pd</code> and
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Possible questions and errors with the import command </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>If you got an error similar to
 <code>ModuleNotFoundError: No module named '___'</code>, it means you
@@ -580,7 +517,7 @@ set.</p>
 3     NaN  Dipodomys  merriami  Rodent          Rodent Exclosure
 4     NaN  Dipodomys  merriami  Rodent  Long-term Krat Exclosure  </code></pre>
 </div>
-<p>The <code>.tail()</code> methods will give us instead the last five
+<p>The <code>.tail()</code> method will give us instead the last five
 rows of the data. If we want to override this default and instead
 display the last two rows, we can use the <code>n</code> argument. An
 <strong>argument</strong> is an input that a function or method takes to
@@ -676,12 +613,12 @@ the study site.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>samples.plot(x <span class="op">=</span> <span class="st">'weight'</span>, y <span class="op">=</span> <span class="st">'hindfoot_length'</span>, kind <span class="op">=</span> <span class="st">'scatter'</span>)</span></code></pre>
 </div>
-<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<figure><img src="fig/n002_scatter_plot.png" alt="Our first plot with Pandas, a scatter plot" class="figure mx-auto d-block"></figure><div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> All roads lead to Rome - Different code, same result </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>When coding, you’ll often find the case where you can get to the same
 result using different code. In this case, the creators of pandas make
@@ -708,7 +645,7 @@ argument, which takes a value between 0 and 1.</p>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>samples.plot(x <span class="op">=</span> <span class="st">'weight'</span>, y <span class="op">=</span> <span class="st">'hindfoot_length'</span>,</span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">'scatter'</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>)</span></code></pre>
 </div>
-<p>With transparency added to the points, we can more clearly observe a
+<figure><img src="fig/n002_alpha_scatter_plot.png" alt="Adding transparency to our previous scatter plot" class="figure mx-auto d-block"></figure><p>With transparency added to the points, we can more clearly observe a
 clustering of data points into several more densely populated regions of
 the scatter plot.</p>
 <p>There are multiple ways we can learn what other arguments we have
@@ -735,7 +672,7 @@ change the color of the points in the scatter plot to green.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Continuing from our last line of code where we added the “alpha”
 argument, we can add the argument <code>c = 'green'</code> to achieve
@@ -746,7 +683,7 @@ what we want.</p>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>samples.plot(x <span class="op">=</span> <span class="st">'weight'</span>, y <span class="op">=</span> <span class="st">'hindfoot_length'</span>,</span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>                  kind<span class="op">=</span><span class="st">'scatter'</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, c <span class="op">=</span> <span class="st">'green'</span>)</span></code></pre>
 </div>
-</div>
+<figure><img src="fig/n002_color_scatter_plot.png" alt="Changing the color of the points to our previous scatter plot" class="figure mx-auto d-block"></figure></div>
 </div>
 </div>
 </div>
@@ -760,7 +697,7 @@ analyze.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>samples.plot(column <span class="op">=</span> <span class="st">'hindfoot_length'</span>, kind <span class="op">=</span> <span class="st">'box'</span>)</span></code></pre>
 </div>
-<p>The box plot shows the median hindfoot length is around 32mm
+<figure><img src="fig/n002_box_plot.png" alt="Box plot of the hindfoot_length variable" class="figure mx-auto d-block"></figure><p>The box plot shows the median hindfoot length is around 32mm
 (represented by the line inside the box) and most values lie between 20
 and 35 mm (which are the borders of the box, representing the 1st and
 3rd quartile of the data, respectively).</p>
@@ -773,7 +710,7 @@ plot.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>samples.plot(column <span class="op">=</span> <span class="st">'hindfoot_length'</span>, by <span class="op">=</span> <span class="st">'plot_type'</span>, kind <span class="op">=</span> <span class="st">'box'</span>)</span></code></pre>
 </div>
-<p>As shown in the previous image, the x-axis labels overlap with each
+<figure><img src="fig/n002_byplot_box_plot.png" alt="Box plot of the hindfoot_length variable by each plot" class="figure mx-auto d-block"></figure><p>As shown in the previous image, the x-axis labels overlap with each
 other, which makes them unreadable. Furthermore, we’d like to start
 customizing the title and the axis labels. Or maybe make multiple
 subplots in the same figure. At this point we realize a more
@@ -796,7 +733,7 @@ plots), using the <code>plt.subplots()</code> function.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>fig, axis <span class="op">=</span> plt.subplots()</span></code></pre>
 </div>
-<p>The <code>fig</code> object we are creating is the entire plot area,
+<figure><img src="fig/n002_empty_plot_area.png" alt="Empty plot area in a Matplotlib plot" class="figure mx-auto d-block"></figure><p>The <code>fig</code> object we are creating is the entire plot area,
 which can contain one or multiple axes. In this case, the function
 default is to create only one set of axes, which will be referenced as
 the <code>axis</code> object. For now, this results in an empty plot
@@ -812,7 +749,7 @@ axis object that we can start customizing.</p>
 <span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>samples.plot(column <span class="op">=</span> <span class="st">'hindfoot_length'</span>, by <span class="op">=</span> <span class="st">'plot_type'</span>,</span>
 <span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">'box'</span>, ax <span class="op">=</span> axis)</span></code></pre>
 </div>
-<p>To start, we can rotate the x-axis labels 90 degrees to make them
+<figure><img src="fig/n002_boxplot_matplotlib.png" alt="Adding our previous box plot to the plot area" class="figure mx-auto d-block"></figure><p>To start, we can rotate the x-axis labels 90 degrees to make them
 readable. For this, we use the <code>.tick_params()</code> method on the
 <code>axis</code> object.</p>
 <div class="codewrapper sourceCode" id="cb19">
@@ -823,7 +760,7 @@ readable. For this, we use the <code>.tick_params()</code> method on the
 <span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">'box'</span>, ax <span class="op">=</span> axis)</span>
 <span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>axis.tick_params(axis <span class="op">=</span> <span class="st">'x'</span>, rotation <span class="op">=</span> <span class="dv">90</span>)</span></code></pre>
 </div>
-<p>Axis objects have a lot of methods like <code>.tick_params()</code>,
+<figure><img src="fig/n002_axisrotation_boxplot_matplotlib.png" alt="Rotating x-axis labels to our previous box plot" class="figure mx-auto d-block"></figure><p>Axis objects have a lot of methods like <code>.tick_params()</code>,
 which can be used to adjust the layout and styling of the plot. For
 example, we can modify the title (the column name is the default) and
 add the x- and y-axis labels with the <code>.set_title()</code>,
@@ -843,7 +780,7 @@ important when reusing lines written previously.</p>
 <span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>axis.set_xlabel(<span class="st">'Plot Types'</span>)</span>
 <span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>axis.set_ylabel(<span class="st">'Hindfoot Length (mm)'</span>)</span></code></pre>
 </div>
-<div class="section level3">
+<figure><img src="fig/n002_custom_boxplot_matplotlib.png" alt="Customizing our previous box plot adding axis labels and a title" class="figure mx-auto d-block"></figure><div class="section level3">
 <h3 id="making-multiple-subplots">Making multiple subplots<a class="anchor" aria-label="anchor" href="#making-multiple-subplots"></a></h3>
 <p>If we want more than one plot in the same figure, we could specify
 the number of rows (<code>nrows</code> argument) and the number of
@@ -856,7 +793,7 @@ arrange our scatter plot and box plot in a single figure.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows <span class="op">=</span> <span class="dv">1</span>, ncols <span class="op">=</span> <span class="dv">2</span>) <span class="co"># note the variable name is 'axes' here rather than 'axis' used above</span></span></code></pre>
 </div>
-<p>The <code>axes</code> object contains two objects, which correspond
+<figure><img src="fig/n002_subplots.png" alt="A Matplotlib figure with two subplots, but empty still" class="figure mx-auto d-block"></figure><p>The <code>axes</code> object contains two objects, which correspond
 to the two sets of axes. We can access each of the objects inside
 <code>axes</code> using <code>axes[0]</code> and
 <code>axes[1]</code>.</p>
@@ -877,7 +814,7 @@ is 2, and so forth.</p>
 <span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>samples.plot(column <span class="op">=</span> <span class="st">'hindfoot_length'</span>, by <span class="op">=</span> <span class="st">'plot_type'</span>,</span>
 <span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">'box'</span>, ax <span class="op">=</span> axes[<span class="dv">1</span>])</span></code></pre>
 </div>
-<p>As shown before, Matplotlib allows us to customize every aspect of
+<figure><img src="fig/n002_scatter_box_subplots.png" alt="Adding scatter and box plots to our figure with two subplots" class="figure mx-auto d-block"></figure><p>As shown before, Matplotlib allows us to customize every aspect of
 our figure. So we’ll make it more professional by adding titles and axis
 labels. Notice at the end the introduction of the
 <code>.suptitle()</code> method, which allows us to add a super title to
@@ -905,7 +842,7 @@ it makes.)</p>
 <span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a>fig.suptitle(<span class="st">'Analysis of Hindfoot Length variable'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
 <span id="cb23-15"><a href="#cb23-15" tabindex="-1"></a>fig.tight_layout()</span></code></pre>
 </div>
-<p>You now have the basic tools to create and customize plots using
+<figure><img src="fig/n002_custom_subplots.png" alt="Customizing title and labels for our figure with two subplots" class="figure mx-auto d-block"></figure><p>You now have the basic tools to create and customize plots using
 pandas and Matplotlib! Let’s put it into practice.</p>
 <div id="challenge---changing-figure-size" class="callout challenge">
 <div class="callout-square">
@@ -933,7 +870,7 @@ the previous figure 7x7 inches in size.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Answers </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The argument we’re looking for is <code>figsize</code>. Figure
 dimension is specified as (width, height) in inches, and the default
@@ -982,7 +919,7 @@ find out which parameter you can use to achieve this.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Answers </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Here is the final code to achieve all of the previous goals. Notice
 what has changed from our previous code.</p>
@@ -1010,7 +947,7 @@ what has changed from our previous code.</p>
 <span id="cb25-19"><a href="#cb25-19" tabindex="-1"></a>fig.suptitle(<span class="st">'Analysis of Hindfoot Length variable'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
 <span id="cb25-20"><a href="#cb25-20" tabindex="-1"></a>fig.tight_layout()</span></code></pre>
 </div>
-</div>
+<figure><img src="fig/n002_advanced_subplots.png" alt="A figure with three subplots: scatter, box, and histogram" class="figure mx-auto d-block"></figure></div>
 </div>
 </div>
 </div>
@@ -1085,13 +1022,24 @@ Matplotlib alone.</p>
 <span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>sns.scatterplot(data <span class="op">=</span> samples, x<span class="op">=</span><span class="st">'weight'</span>, y<span class="op">=</span><span class="st">'hindfoot_length'</span>,</span>
 <span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>              hue<span class="op">=</span><span class="st">'sex'</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>)</span></code></pre>
 </div>
-</li>
-<li><p><a href="https://plotly.com/python/" class="external-link"><strong>Plotly:</strong></a>
+<figure><img src="fig/n002_seaborn.png" alt="A figure with three subplots: scatter, box, and histogram" class="figure mx-auto d-block"></figure></li>
+<li>
+<p><a href="https://plotly.com/python/" class="external-link"><strong>Plotly:</strong></a>
 A tool to explore if you want web-based interactive visualizations where
 you can hover over data points to get additional information or zoom in
 to get a closer look. Plots can be displayed in Jupyter notebooks,
-standalone HTML files, or be part of a web dashboard.</p></li>
-</ul><div id="keypoints1" class="callout keypoints">
+standalone HTML files, or be part of a web dashboard.</p>
+<div class="codewrapper sourceCode" id="cb28">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a>fig <span class="op">=</span> px.scatter(data_frame<span class="op">=</span>samples, x<span class="op">=</span><span class="st">"weight"</span>, y<span class="op">=</span><span class="st">"hindfoot_length"</span>, </span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a>               hover_data<span class="op">=</span><span class="st">"record_id"</span>)</span></code></pre>
+</div>
+</li>
+</ul><iframe src="fig/n002_plotly_example.html" width="100%" height="600px" frameborder="0">
+</iframe>
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -1171,7 +1119,7 @@ method.</li>
   "url": "https://datacarpentry.github.io/python-ecology-lesson/n002-visualizing-matplotlib.html",
   "identifier": "https://datacarpentry.github.io/python-ecology-lesson/n002-visualizing-matplotlib.html",
   "dateCreated": "2015-03-19",
-  "dateModified": "2025-10-27",
+  "dateModified": "2025-10-28",
   "datePublished": "2025-10-28"
 }
 

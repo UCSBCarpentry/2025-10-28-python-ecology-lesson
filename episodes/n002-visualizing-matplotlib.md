@@ -136,7 +136,7 @@ samples.head()
 4     NaN  Dipodomys  merriami  Rodent  Long-term Krat Exclosure  
 ```
 
-The `.tail()` methods will give us instead the last five rows of the data.
+The `.tail()` method will give us instead the last five rows of the data.
 If we want to override this default and instead display the last two rows, we can use the `n` argument.
 An **argument** is an input that a function or method takes to modify how it operates, and you set arguments using the `=` sign.
 
@@ -212,6 +212,7 @@ With the following code, we will make a scatter plot (argument `kind = 'scatter'
 ```python
 samples.plot(x = 'weight', y = 'hindfoot_length', kind = 'scatter')
 ```
+![](fig/n002_scatter_plot.png){alt='Our first plot with Pandas, a scatter plot'}
 
 :::::::::::::::::::::::::::::::::::::::::: spoiler
 
@@ -233,6 +234,8 @@ We can adjust the transparency of the points using the `alpha` argument, which t
 samples.plot(x = 'weight', y = 'hindfoot_length',
                   kind = 'scatter', alpha = 0.2)
 ```
+
+![](fig/n002_alpha_scatter_plot.png){alt='Adding transparency to our previous scatter plot'}
 
 With transparency added to the points, we can more clearly observe a clustering of data points into several more densely populated regions of the scatter plot.
 
@@ -257,6 +260,8 @@ samples.plot(x = 'weight', y = 'hindfoot_length',
                   kind='scatter', alpha = 0.2, c = 'green')
 ```
 
+![](fig/n002_color_scatter_plot.png){alt='Changing the color of the points to our previous scatter plot'}
+
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -270,6 +275,8 @@ We'll use the `column` argument to specify what is the column we want to analyze
 samples.plot(column = 'hindfoot_length', kind = 'box')
 ```
 
+![](fig/n002_box_plot.png){alt='Box plot of the hindfoot_length variable'}
+
 The box plot shows the median hindfoot length is around 32mm (represented by the line inside the box) and most values lie between 20 and 35 mm (which are the borders of the box, representing the 1st and 3rd quartile of the data, respectively).
 
 We could further expand this analysis, and see the distribution of this variable across different plot types.
@@ -278,6 +285,8 @@ We can add a `by` argument, saying by which variable we want do disaggregate the
 ```python
 samples.plot(column = 'hindfoot_length', by = 'plot_type', kind = 'box')
 ```
+
+![](fig/n002_byplot_box_plot.png){alt='Box plot of the hindfoot_length variable by each plot'}
 
 As shown in the previous image, the x-axis labels overlap with each other, which makes them unreadable.
 Furthermore, we'd like to start customizing the title and the axis labels.
@@ -299,6 +308,8 @@ Our first step in the process is creating our figure and our axes (or plots), us
 fig, axis = plt.subplots()
 ```
 
+![](fig/n002_empty_plot_area.png){alt='Empty plot area in a Matplotlib plot'}
+
 The `fig` object we are creating is the entire plot area, which can contain one or multiple axes.
 In this case, the function default is to create only one set of axes, which will be referenced as the `axis` object.
 For now, this results in an empty plot like a blank canvas for us to start plotting data on to.
@@ -312,6 +323,8 @@ samples.plot(column = 'hindfoot_length', by = 'plot_type',
                   kind = 'box', ax = axis)
 ```
 
+![](fig/n002_boxplot_matplotlib.png){alt='Adding our previous box plot to the plot area'}
+
 To start, we can rotate the x-axis labels 90 degrees to make them readable.
 For this, we use the `.tick_params()` method on the `axis` object.
 
@@ -321,6 +334,8 @@ samples.plot(column = 'hindfoot_length', by = 'plot_type',
                   kind = 'box', ax = axis)
 axis.tick_params(axis = 'x', rotation = 90)
 ```
+
+![](fig/n002_axisrotation_boxplot_matplotlib.png){alt='Rotating x-axis labels to our previous box plot'}
 
 Axis objects have a lot of methods like `.tick_params()`, which can be used to adjust the layout and styling of the plot.
 For example, we can modify the title (the column name is the default) and add the x- and y-axis labels with the `.set_title()`, `.set_xlabel()`, and `.set_ylabel()` methods.
@@ -337,6 +352,8 @@ axis.set_xlabel('Plot Types')
 axis.set_ylabel('Hindfoot Length (mm)')
 ```
 
+![](fig/n002_custom_boxplot_matplotlib.png){alt='Customizing our previous box plot adding axis labels and a title'}
+
 ### Making multiple subplots
 
 If we want more than one plot in the same figure, we could specify the number of rows (`nrows` argument) and the number of columns (`ncols`) when calling the `plt.subplots` function.
@@ -346,6 +363,8 @@ This will be useful in a minute, when we arrange our scatter plot and box plot i
 ```python
 fig, axes = plt.subplots(nrows = 1, ncols = 2) # note the variable name is 'axes' here rather than 'axis' used above
 ```
+
+![](fig/n002_subplots.png){alt='A Matplotlib figure with two subplots, but empty still'}
 
 The `axes` object contains two objects, which correspond to the two sets of axes.
 We can access each of the objects inside `axes` using `axes[0]` and `axes[1]`.
@@ -362,6 +381,8 @@ samples.plot(x = 'weight', y = 'hindfoot_length', kind='scatter',
 samples.plot(column = 'hindfoot_length', by = 'plot_type',
                   kind = 'box', ax = axes[1])
 ```
+
+![](fig/n002_scatter_box_subplots.png){alt='Adding scatter and box plots to our figure with two subplots'}
 
 As shown before, Matplotlib allows us to customize every aspect of our figure.
 So we'll make it more professional by adding titles and axis labels.
@@ -386,6 +407,8 @@ axes[1].set_ylabel('Hindfoot Length (mm)')
 fig.suptitle('Analysis of Hindfoot Length variable', fontsize=16)
 fig.tight_layout()
 ```
+
+![](fig/n002_custom_subplots.png){alt='Customizing title and labels for our figure with two subplots'}
 
 You now have the basic tools to create and customize plots using pandas and Matplotlib!
 Let's put it into practice.
@@ -465,6 +488,8 @@ fig.suptitle('Analysis of Hindfoot Length variable', fontsize=16)
 fig.tight_layout()
 ```
 
+![](fig/n002_advanced_subplots.png){alt='A figure with three subplots: scatter, box, and histogram'}
+
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -522,9 +547,19 @@ Refer to the [introduction to seaborn](https://seaborn.pydata.org/tutorial/intro
   sns.scatterplot(data = samples, x='weight', y='hindfoot_length',
                 hue='sex', alpha = 0.2)
   ```
+  
+  ![](fig/n002_seaborn.png){alt='A figure with three subplots: scatter, box, and histogram'}
 
 - [**Plotly:**](https://plotly.com/python/) A tool to explore if you want web-based interactive visualizations where you can hover over data points to get additional information or zoom in to get a closer look.
 Plots can be displayed in Jupyter notebooks, standalone HTML files, or be part of a web dashboard.
+
+  ```python
+  import plotly.express as px
+  fig = px.scatter(data_frame=samples, x="weight", y="hindfoot_length", 
+                 hover_data="record_id")
+  ```
+
+<iframe src="fig/n002_plotly_example.html" width="100%" height="600px" frameborder="0"></iframe>
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 

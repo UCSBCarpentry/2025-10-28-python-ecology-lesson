@@ -136,6 +136,12 @@
     <loc>https://datacarpentry.github.io/python-ecology-lesson/instructor/n003-data-structures.html</loc>
   </url>
   <url>
+    <loc>https://datacarpentry.github.io/python-ecology-lesson/instructor/n004-index-slice-subset.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/python-ecology-lesson/instructor/n005-merging-data.html</loc>
+  </url>
+  <url>
     <loc>https://datacarpentry.github.io/python-ecology-lesson/instructor/profiles.html</loc>
   </url>
   <url>
@@ -158,6 +164,12 @@
   </url>
   <url>
     <loc>https://datacarpentry.github.io/python-ecology-lesson/n003-data-structures.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/python-ecology-lesson/n004-index-slice-subset.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/python-ecology-lesson/n005-merging-data.html</loc>
   </url>
   <url>
     <loc>https://datacarpentry.github.io/python-ecology-lesson/profiles.html</loc>

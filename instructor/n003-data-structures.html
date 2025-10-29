@@ -229,6 +229,8 @@
 <li><a href="#data-input-within-python">Data input within Python</a></li>
 <li><a href="#unexpected-data-types">Unexpected data types</a></li>
 <li><a href="#assignment-evaluation-and-mutability">Assignment, evaluation, and mutability</a></li>
+<li><a href="#groups-in-pandas">Groups in Pandas</a></li>
+<li><a href="#quick-easy-plotting-data-using-pandas">Quick &amp; Easy Plotting Data Using Pandas</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -320,7 +322,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Exploring and understanding data</h1>
-        <p>Last updated on 2025-10-27 |
+        <p>Last updated on 2025-10-29 |
 
         <a href="https://github.com/datacarpentry/python-ecology-lesson/edit/main/episodes/n003-data-structures.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -1357,7 +1359,7 @@ Name: plot_id, Length: 16878, dtype: int64</code></pre>
 <div class="codewrapper sourceCode" id="cb60">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a>surveys_df[<span class="st">'weight'</span>].astype(<span class="st">'int'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a>samples[<span class="st">'weight'</span>].astype(<span class="st">'int'</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1678,13 +1680,13 @@ be better.</p>
 </button>
 <div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
-<p><code>mean_weight</code> and <code>surveys_df</code> are examples of
+<p><code>mean_weight</code> and <code>samples</code> are examples of
 reasonably good variable names: they are relatively short yet
 descriptive.</p>
 <p><code>df2</code> is not descriptive enough and could be potentially
 confusing if encountered by somebody else/ourselves in a few weeks’
 time. The name could be improved by making it more descriptive,
-e.g. <code>surveys_df_duplicate</code>.</p>
+e.g. <code>samples_duplicate</code>.</p>
 </div>
 </div>
 </div>
@@ -1743,6 +1745,223 @@ the data in the original.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" tabindex="-1"></a>df2 <span class="op">=</span> samples.copy()</span></code></pre>
 </div>
+</div>
+</section><section><h2 class="section-heading" id="groups-in-pandas">Groups in Pandas<a class="anchor" aria-label="anchor" href="#groups-in-pandas"></a></h2>
+<hr class="half-width"><p>We often want to calculate summary statistics grouped by subsets or
+attributes within fields of our data. For example, we might want to
+calculate the average weight of all individuals per site.</p>
+<p>We can calculate basic statistics for all records in a single column
+using the syntax below:</p>
+<div class="codewrapper sourceCode" id="cb88">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" tabindex="-1"></a>samples[<span class="st">'weight'</span>].describe()</span></code></pre>
+</div>
+<p>gives <strong>output</strong></p>
+<div class="codewrapper sourceCode" id="cb89">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" tabindex="-1"></a>count    <span class="fl">15186.000000</span></span>
+<span id="cb89-2"><a href="#cb89-2" tabindex="-1"></a>mean        <span class="fl">53.216647</span></span>
+<span id="cb89-3"><a href="#cb89-3" tabindex="-1"></a>std         <span class="fl">44.265878</span></span>
+<span id="cb89-4"><a href="#cb89-4" tabindex="-1"></a><span class="bu">min</span>          <span class="fl">4.000000</span></span>
+<span id="cb89-5"><a href="#cb89-5" tabindex="-1"></a><span class="dv">25</span><span class="op">%</span>         <span class="fl">24.000000</span></span>
+<span id="cb89-6"><a href="#cb89-6" tabindex="-1"></a><span class="dv">50</span><span class="op">%</span>         <span class="fl">42.000000</span></span>
+<span id="cb89-7"><a href="#cb89-7" tabindex="-1"></a><span class="dv">75</span><span class="op">%</span>         <span class="fl">53.000000</span></span>
+<span id="cb89-8"><a href="#cb89-8" tabindex="-1"></a><span class="bu">max</span>        <span class="fl">278.000000</span></span>
+<span id="cb89-9"><a href="#cb89-9" tabindex="-1"></a>Name: weight, dtype: float64</span></code></pre>
+</div>
+<p>We can also extract one specific metric if we wish:</p>
+<div class="codewrapper sourceCode" id="cb90">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" tabindex="-1"></a>samples[<span class="st">'weight'</span>].<span class="bu">min</span>()</span>
+<span id="cb90-2"><a href="#cb90-2" tabindex="-1"></a>samples[<span class="st">'weight'</span>].<span class="bu">max</span>()</span>
+<span id="cb90-3"><a href="#cb90-3" tabindex="-1"></a>samples[<span class="st">'weight'</span>].mean()</span>
+<span id="cb90-4"><a href="#cb90-4" tabindex="-1"></a>samples[<span class="st">'weight'</span>].std()</span>
+<span id="cb90-5"><a href="#cb90-5" tabindex="-1"></a>samples[<span class="st">'weight'</span>].count()</span></code></pre>
+</div>
+<p>But if we want to summarize by one or more variables, for example
+sex, we can use <strong>Pandas’ <code>.groupby</code> method</strong>.
+Once we’ve created a groupby DataFrame, we can quickly calculate summary
+statistics by a group of our choice.</p>
+<div class="codewrapper sourceCode" id="cb91">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" tabindex="-1"></a><span class="co"># Group data by sex</span></span>
+<span id="cb91-2"><a href="#cb91-2" tabindex="-1"></a>grouped_data <span class="op">=</span> samples.groupby(<span class="st">'sex'</span>)</span></code></pre>
+</div>
+<p>The <strong>pandas function <code>describe</code></strong> will
+return descriptive stats including: mean, median, max, min, std and
+count for a particular column in the data. Pandas’ <code>describe</code>
+function will only return summary values for columns containing numeric
+data.</p>
+<div class="codewrapper sourceCode" id="cb92">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" tabindex="-1"></a><span class="co"># Summary statistics for all numeric columns by sex</span></span>
+<span id="cb92-2"><a href="#cb92-2" tabindex="-1"></a>grouped_data.describe()</span>
+<span id="cb92-3"><a href="#cb92-3" tabindex="-1"></a><span class="co"># Provide the mean for each numeric column by sex</span></span>
+<span id="cb92-4"><a href="#cb92-4" tabindex="-1"></a>grouped_data.mean(numeric_only<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>       record_id     month        day         year    plot_id  \
+sex
+F    8371.632960  6.475266  15.411998  1983.520361  11.418147
+M    8553.106416  6.306295  15.763317  1983.679177  11.248305
+
+     hindfoot_length     weight
+sex
+F           31.83258  53.114471
+M           32.13352  53.164464
+</code></pre>
+</div>
+<p>The <code>groupby</code> command is powerful in that it allows us to
+quickly generate summary stats.</p>
+<div id="challenge---summary-data" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="challenge---summary-data" class="callout-inner">
+<h3 class="callout-title">Challenge - Summary Data</h3>
+<div class="callout-content">
+<ol style="list-style-type: decimal"><li>How many recorded individuals are female <code>F</code> and how many
+male <code>M</code>?</li>
+<li>What happens when you group by two columns using the following
+syntax and then calculate mean values?</li>
+</ol><ul><li><code>grouped_data2 = samples.groupby(['plot_id', 'sex'])</code></li>
+<li><code>grouped_data2.mean(numeric_only=True)</code></li>
+</ul><ol start="3" style="list-style-type: decimal"><li>Summarize weight values for each site in your data. HINT: you can
+use the following syntax to only create summary statistics for one
+column in your data. <code>by_site['weight'].describe()</code>
+</li>
+</ol></div>
+</div>
+</div>
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
+</button>
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div class="accordion-body">
+<ol style="list-style-type: decimal"><li>The first column of output from <code>grouped_data.describe()</code>
+(count) tells us that the data contains 15690 records for female
+individuals and 17348 records for male individuals.
+<ul><li>Note that these two numbers do not sum to 35549, the total number of
+rows we know to be in the <code>samples</code> DataFrame. Why do you
+think some records were excluded from the grouping?</li>
+</ul></li>
+<li>Calling the <code>mean()</code> method on data grouped by these two
+columns calculates and returns the mean value for each combination of
+plot and sex.
+<ul><li>Note that the mean is not meaningful for some variables, e.g. day,
+month, and year. You can specify particular columns and particular
+summary statistics using the <code>agg()</code> method (short for
+<em>aggregate</em>), e.g. to obtain the last survey year, median
+foot-length and mean weight for each plot/sex combination:</li>
+</ul></li>
+</ol><div class="codewrapper sourceCode" id="cb94">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" tabindex="-1"></a>samples.groupby([<span class="st">'plot_id'</span>, <span class="st">'sex'</span>]).agg({<span class="st">"year"</span>: <span class="st">'max'</span>,</span>
+<span id="cb94-2"><a href="#cb94-2" tabindex="-1"></a>                                           <span class="st">"hindfoot_length"</span>: <span class="st">'median'</span>,</span>
+<span id="cb94-3"><a href="#cb94-3" tabindex="-1"></a>                                           <span class="st">"weight"</span>: <span class="st">'mean'</span>})</span></code></pre>
+</div>
+<ol start="3" style="list-style-type: decimal"><li><code>samples.groupby(['plot_id'])['weight'].describe()</code></li>
+</ol><div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>          count       mean        std  min   25%   50%     75%    max
+plot_id
+1         909.0  65.974697  45.807013  4.0  39.0  46.0   99.00  223.0
+2         962.0  59.911642  50.234865  5.0  31.0  44.0   55.00  278.0
+3         641.0  38.338534  50.623079  4.0  11.0  20.0   34.00  250.0
+4         828.0  62.647343  41.208190  4.0  37.0  45.0  102.00  200.0
+5         788.0  47.864213  36.739691  5.0  28.0  42.0   50.00  248.0
+6         686.0  49.180758  36.620356  5.0  25.0  42.0   52.00  243.0
+7         257.0  25.101167  31.649778  4.0  11.0  19.0   24.00  235.0
+8         736.0  64.593750  43.420011  5.0  39.0  48.0  102.25  178.0
+9         893.0  65.346025  41.928699  6.0  40.0  48.0   99.00  275.0
+10        159.0  21.188679  25.744403  4.0  10.0  12.0   24.50  237.0
+11        905.0  50.260773  37.034074  5.0  29.0  42.0   49.00  212.0
+12       1086.0  55.978821  45.675559  7.0  31.0  44.0   53.00  264.0
+13        647.0  56.316847  42.464628  5.0  30.5  44.0   54.00  241.0
+14        798.0  52.909774  33.993126  5.0  38.0  45.0   51.00  216.0
+15        357.0  35.011204  47.396960  4.0  10.0  19.0   33.00  259.0
+16        232.0  26.185345  22.040403  4.0  11.0  20.0   40.00  158.0
+17        788.0  59.426396  44.751988  4.0  30.0  45.0   61.25  216.0
+18        690.0  56.000000  44.368296  5.0  29.0  42.0   53.00  256.0
+19        369.0  19.059621  15.320905  4.0   9.0  15.0   23.00  139.0
+20        662.0  65.531722  53.234713  6.0  30.0  44.0  110.75  223.0
+21        342.0  24.964912  32.230001  4.0   8.0  12.0   27.00  190.0
+22        611.0  70.163666  45.955603  5.0  37.0  48.0  118.00  212.0
+23        209.0  21.502392  19.647158  4.0  10.0  16.0   24.00  131.0
+24        631.0  50.123613  47.017531  4.0  23.0  40.0   47.00  251.0</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="quickly-creating-summary-counts-in-pandas">Quickly Creating Summary Counts in Pandas<a class="anchor" aria-label="anchor" href="#quickly-creating-summary-counts-in-pandas"></a></h3>
+<p>Let’s next count the number of samples for each species. We can do
+this in a few ways, but we’ll use <code>groupby</code> combined with
+<strong>a <code>count()</code> method</strong>.</p>
+<div class="codewrapper sourceCode" id="cb96">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" tabindex="-1"></a><span class="co"># Count the number of samples by species</span></span>
+<span id="cb96-2"><a href="#cb96-2" tabindex="-1"></a>species_counts <span class="op">=</span> samples.groupby(<span class="st">'species_id'</span>)[<span class="st">'record_id'</span>].count()</span>
+<span id="cb96-3"><a href="#cb96-3" tabindex="-1"></a><span class="bu">print</span>(species_counts)</span></code></pre>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="quick-easy-plotting-data-using-pandas">Quick &amp; Easy Plotting Data Using Pandas<a class="anchor" aria-label="anchor" href="#quick-easy-plotting-data-using-pandas"></a></h2>
+<hr class="half-width"><p>We can plot our summary stats using Pandas, too.</p>
+<div class="codewrapper sourceCode" id="cb97">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" tabindex="-1"></a><span class="co"># Create a quick bar chart</span></span>
+<span id="cb97-2"><a href="#cb97-2" tabindex="-1"></a>species_counts.plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span></code></pre>
+</div>
+<figure><img src="../fig/countPerSpecies.png" alt="Weight by Species Site" class="figure mx-auto d-block"></figure><p>We can also look at how many animals were captured in each site:</p>
+<div class="codewrapper sourceCode" id="cb98">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" tabindex="-1"></a>total_count <span class="op">=</span> samples.groupby(<span class="st">'plot_id'</span>)[<span class="st">'record_id'</span>].nunique()</span>
+<span id="cb98-2"><a href="#cb98-2" tabindex="-1"></a><span class="co"># Let's plot that too</span></span>
+<span id="cb98-3"><a href="#cb98-3" tabindex="-1"></a>total_count.plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span></code></pre>
+</div>
+<div id="challenge---plots" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="challenge---plots" class="callout-inner">
+<h3 class="callout-title">Challenge - Plots</h3>
+<div class="callout-content">
+<ol style="list-style-type: decimal"><li>Create a plot of average weight across all species per site.</li>
+<li>Create a plot of total males versus total females for the entire
+dataset.</li>
+</ol></div>
+</div>
+</div>
+<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
+  <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
+</button>
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div class="accordion-body">
+<ol style="list-style-type: decimal"><li><code>samples.groupby('plot_id')["weight"].mean().plot(kind='bar')</code></li>
+</ol><figure><img src="../fig/01_chall_bar_meanweight.png" alt="average weight across all species for each plot" class="figure mx-auto d-block"></figure><ol start="2" style="list-style-type: decimal"><li><code>samples.groupby('sex')["record_id"].count().plot(kind='bar')</code></li>
+</ol><figure><img src="../fig/01_chall_bar_totalsex.png" alt="total males versus total females for the entire dataset" class="figure mx-auto d-block"></figure></div>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -1759,7 +1978,6 @@ perform on and with it.</li>
 <li>Python evaluates expressions in a line one by one before assigning
 the final result to a variable.</li>
 </ul></div>
-</div>
 </div>
 </div>
 </section></div> <!-- / div.lesson-content -->
@@ -1820,7 +2038,7 @@ the final result to a variable.</li>
   "url": "https://datacarpentry.github.io/python-ecology-lesson/instructor/n003-data-structures.html",
   "identifier": "https://datacarpentry.github.io/python-ecology-lesson/instructor/n003-data-structures.html",
   "dateCreated": "2015-03-19",
-  "dateModified": "2025-10-27",
+  "dateModified": "2025-10-29",
   "datePublished": "2025-10-29"
 }
 

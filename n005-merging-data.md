@@ -1,5 +1,5 @@
 ---
-title: Combining DataFrames with Pandas
+title: Combining DataFrames
 teaching: 20
 exercises: 25
 ---
@@ -27,13 +27,12 @@ DataFrames](https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html
 `merge` and `concat`.
 
 To work through the examples below, we first need to load the species and
-surveys files into pandas DataFrames. In a Jupyter Notebook or iPython:
+surveys files into pandas DataFrames.:
 
 ```python
 import pandas as pd
-surveys_df = pd.read_csv("data/surveys.csv",
-                         keep_default_na=False, na_values=[""])
-surveys_df
+samples = pd.read_csv("../data/surveys.csv")
+samples
 ```
 
 ```output
@@ -54,9 +53,8 @@ surveys_df
 ```
 
 ```python
-species_df = pd.read_csv("data/species.csv",
-                         keep_default_na=False, na_values=[""])
-species_df
+species = pd.read_csv("../data/species.csv")
+species
 ```
 
 ```output
@@ -75,14 +73,6 @@ species_df
 
 [54 rows x 4 columns]
 ```
-
-Take note that the `read_csv` method we used can take some additional options which
-we didn't use previously. Many functions in Python have a set of options that
-can be set by the user if needed. In this case, we have told pandas to assign
-empty values in our CSV to `NaN` with the parameters `keep_default_na=False` and `na_values=[""]`.
-We have explicitly requested to change empty values in the CSV to NaN,
-this is however also the default behaviour of `read_csv`.
-[More about all of the `read_csv` options here and their defaults.](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html#pandas.read_csv)
 
 ## Concatenating DataFrames
 
@@ -133,17 +123,9 @@ pandas doesn't include the index number for each line.
 
 ```python
 # Write DataFrame to CSV
-vertical_stack.to_csv('data/out.csv', index=False)
+vertical_stack.to_csv('../data/out.csv', index=False)
 ```
 
-Check out your working directory to make sure the CSV wrote out properly, and
-that you can open it! If you want, try to bring it back into pandas to make sure
-it imports properly.
-
-```python
-# For kicks read our output back into Python and make sure all looks good
-new_output = pd.read_csv('data/out.csv', keep_default_na=False, na_values=[""])
-```
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -154,24 +136,16 @@ that contains survey data broken down into individual files by year.
 Read the data from two of these files,
 `surveys2001.csv` and `surveys2002.csv`,
 into pandas and combine the files to make one new DataFrame.
-Create a plot of average plot weight by year grouped by sex.
 Export your results as a CSV and make sure it reads back into pandas properly.
 
 ::::::::::::::::::::::: solution
 
 ```python
 # read the files:
-survey2001 = pd.read_csv("data/yearly_files/surveys2001.csv")
-survey2002 = pd.read_csv("data/yearly_files/surveys2002.csv")
+survey2001 = pd.read_csv("../data/surveys2001.csv")
+survey2002 = pd.read_csv("../data/surveys2002.csv")
 # concatenate
 survey_all = pd.concat([survey2001, survey2002], axis=0)
-# get the weight for each year, grouped by sex:
-weight_year = survey_all.groupby(['year', 'sex']).mean()["wgt"].unstack()
-# plot:
-weight_year.plot(kind="bar")
-plt.tight_layout()  # tip: use this to improve the plot layout. 
-# Try running the code without this line to see 
-# what difference applying plt.tight_layout() makes.
 ```
 
 ![](fig/04_chall_weight_year.png){alt='average weight for each year, grouped by sex'}
@@ -231,7 +205,7 @@ survey_sub = surveys_df.head(10)
 
 # Import a small subset of the species data designed for this part of the lesson.
 # It is stored in the data folder.
-species_sub = pd.read_csv('data/speciesSubset.csv', keep_default_na=False, na_values=[""])
+species_sub = pd.read_csv('../data/speciesSubset.csv')
 ```
 
 In this example, `species_sub` is the lookup table containing genus, species, and
@@ -253,7 +227,7 @@ species_sub.columns
 ```
 
 ```output
-Index([u'species_id', u'genus', u'species', u'taxa'], dtype='object')
+Index(['species_id', 'genus', 'species', 'taxa'], dtype='object')
 ```
 
 ```python
@@ -261,8 +235,8 @@ survey_sub.columns
 ```
 
 ```output
-Index([u'record_id', u'month', u'day', u'year', u'plot_id', u'species_id',
-       u'sex', u'hindfoot_length', u'weight'], dtype='object')
+Index(['record_id', 'month', 'day', 'year', 'plot_id', 'species_id',
+       'sex', 'hindfoot_length', 'weight'], dtype='object')
 ```
 
 In our example, the join key is the column containing the two-letter species
@@ -458,8 +432,8 @@ The pandas `merge` function supports other join types:
 Create a new DataFrame by joining the contents of the `surveys.csv` and
 `species.csv` tables. Then calculate and plot the distribution of:
 
-1. taxa by plot
-2. taxa by sex by plot
+1. Number of unique taxa by plot
+2. Number of unique taxa by sex by plot
 
 ::::::::::::::::::::::: solution
 
@@ -489,7 +463,7 @@ merged_left = pd.merge(left=surveys_df,right=species_df, how='left', on="species
 Providing the Nan values with the M|F values (can also already be changed to 'x'):
 
 ```python
-merged_left.loc[merged_left["sex"].isnull(), "sex"] = 'M|F'
+merged_left.loc[merged_left["sex"].isna(), "sex"] = 'M|F'
 ntaxa_sex_site= merged_left.groupby(["plot_id", "sex"])["taxa"].nunique().reset_index(level=1)
 ntaxa_sex_site = ntaxa_sex_site.pivot_table(values="taxa", columns="sex", index=ntaxa_sex_site.index)
 ntaxa_sex_site.plot(kind="bar", legend=False, stacked=True)
@@ -560,7 +534,7 @@ and [Altair][altair] for this kind of multivariate visualisation.
 
 1.
   ```python
-  plot_info = pd.read_csv("data/plots.csv")
+  plot_info = pd.read_csv("../data/plots.csv")
   plot_info.groupby("plot_type").count()
   ```
 

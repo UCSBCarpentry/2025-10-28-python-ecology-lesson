@@ -62,8 +62,8 @@ episodes:
 - n001-getting-started.md
 - n002-visualizing-matplotlib.md
 - n003-data-structures.md
-- 03-index-slice-subset.md
-- 05-merging-data.md
+- n004-index-slice-subset.md
+- n005-merging-data.md
 - 06-loops-and-functions.md
 
 # Information for Learners

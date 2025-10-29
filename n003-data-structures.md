@@ -779,7 +779,7 @@ Name: plot_id, Length: 16878, dtype: int64
 ```
 
 ```python
-surveys_df['weight'].astype('int')
+samples['weight'].astype('int')
 ```
 
 ```error
@@ -1018,10 +1018,10 @@ Refer to the rules and recommendations listed above to suggest how these variabl
 
 ::::::::::::::::::::: solution
 
-`mean_weight` and `surveys_df` are examples of reasonably good variable names: they are relatively short yet descriptive.
+`mean_weight` and `samples` are examples of reasonably good variable names: they are relatively short yet descriptive.
 
 `df2` is not descriptive enough and could be potentially confusing if encountered by somebody else/ourselves in a few weeks' time.
-The name could be improved by making it more descriptive, e.g. `surveys_df_duplicate`.
+The name could be improved by making it more descriptive, e.g. `samples_duplicate`.
 
 ::::::::::::::::::::::::::::::
 
@@ -1077,6 +1077,210 @@ The key thing to remember is that **you should use the `copy` method to make a c
 ```python
 df2 = samples.copy()
 ```
+
+## Groups in Pandas
+
+We often want to calculate summary statistics grouped by subsets or attributes
+within fields of our data. For example, we might want to calculate the average
+weight of all individuals per site.
+
+We can calculate basic statistics for all records in a single column using the
+syntax below:
+
+```python
+samples['weight'].describe()
+```
+
+gives **output**
+
+```python
+count    15186.000000
+mean        53.216647
+std         44.265878
+min          4.000000
+25%         24.000000
+50%         42.000000
+75%         53.000000
+max        278.000000
+Name: weight, dtype: float64
+```
+
+We can also extract one specific metric if we wish:
+
+```python
+samples['weight'].min()
+samples['weight'].max()
+samples['weight'].mean()
+samples['weight'].std()
+samples['weight'].count()
+```
+
+But if we want to summarize by one or more variables, for example sex, we can
+use **Pandas' `.groupby` method**. Once we've created a groupby DataFrame, we
+can quickly calculate summary statistics by a group of our choice.
+
+```python
+# Group data by sex
+grouped_data = samples.groupby('sex')
+```
+
+The **pandas function `describe`** will return descriptive stats including: mean,
+median, max, min, std and count for a particular column in the data. Pandas'
+`describe` function will only return summary values for columns containing
+numeric data.
+
+```python
+# Summary statistics for all numeric columns by sex
+grouped_data.describe()
+# Provide the mean for each numeric column by sex
+grouped_data.mean(numeric_only=True)
+```
+
+```output
+       record_id     month        day         year    plot_id  \
+sex                                                             
+F    8371.632960  6.475266  15.411998  1983.520361  11.418147   
+M    8553.106416  6.306295  15.763317  1983.679177  11.248305   
+
+     hindfoot_length     weight  
+sex                              
+F           31.83258  53.114471  
+M           32.13352  53.164464  
+
+```
+
+The `groupby` command is powerful in that it allows us to quickly generate
+summary stats.
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+### Challenge - Summary Data
+
+1. How many recorded individuals are female `F` and how many male `M`?
+2. What happens when you group by two columns using the following syntax and
+  then calculate mean values?
+
+- `grouped_data2 = samples.groupby(['plot_id', 'sex'])`
+- `grouped_data2.mean(numeric_only=True)`
+
+3. Summarize weight values for each site in your data. HINT: you can use the
+  following syntax to only create summary statistics for one column in your data.
+  `by_site['weight'].describe()`
+
+:::::::::::::::  solution
+
+1. The first column of output from `grouped_data.describe()` (count) 
+   tells us that the data contains 15690 records for female individuals
+   and 17348 records for male individuals.
+   - Note that these two numbers do not sum to 35549, 
+     the total number of rows we know to be in the `samples` DataFrame.
+     Why do you think some records were excluded from the grouping?
+2. Calling the `mean()` method on data grouped by these two columns 
+   calculates and returns
+   the mean value for each combination of plot and sex. 
+   - Note that the mean is not meaningful for some variables,
+     e.g. day, month, and year. 
+     You can specify particular columns and particular summary statistics
+     using the `agg()` method (short for _aggregate_),
+     e.g. to obtain 
+     the last survey year, 
+     median foot-length 
+     and mean weight for each plot/sex combination:
+
+```python
+samples.groupby(['plot_id', 'sex']).agg({"year": 'max',
+                                           "hindfoot_length": 'median',
+                                           "weight": 'mean'})
+```
+
+3. `samples.groupby(['plot_id'])['weight'].describe()`
+
+```output
+          count       mean        std  min   25%   50%     75%    max
+plot_id                                                              
+1         909.0  65.974697  45.807013  4.0  39.0  46.0   99.00  223.0
+2         962.0  59.911642  50.234865  5.0  31.0  44.0   55.00  278.0
+3         641.0  38.338534  50.623079  4.0  11.0  20.0   34.00  250.0
+4         828.0  62.647343  41.208190  4.0  37.0  45.0  102.00  200.0
+5         788.0  47.864213  36.739691  5.0  28.0  42.0   50.00  248.0
+6         686.0  49.180758  36.620356  5.0  25.0  42.0   52.00  243.0
+7         257.0  25.101167  31.649778  4.0  11.0  19.0   24.00  235.0
+8         736.0  64.593750  43.420011  5.0  39.0  48.0  102.25  178.0
+9         893.0  65.346025  41.928699  6.0  40.0  48.0   99.00  275.0
+10        159.0  21.188679  25.744403  4.0  10.0  12.0   24.50  237.0
+11        905.0  50.260773  37.034074  5.0  29.0  42.0   49.00  212.0
+12       1086.0  55.978821  45.675559  7.0  31.0  44.0   53.00  264.0
+13        647.0  56.316847  42.464628  5.0  30.5  44.0   54.00  241.0
+14        798.0  52.909774  33.993126  5.0  38.0  45.0   51.00  216.0
+15        357.0  35.011204  47.396960  4.0  10.0  19.0   33.00  259.0
+16        232.0  26.185345  22.040403  4.0  11.0  20.0   40.00  158.0
+17        788.0  59.426396  44.751988  4.0  30.0  45.0   61.25  216.0
+18        690.0  56.000000  44.368296  5.0  29.0  42.0   53.00  256.0
+19        369.0  19.059621  15.320905  4.0   9.0  15.0   23.00  139.0
+20        662.0  65.531722  53.234713  6.0  30.0  44.0  110.75  223.0
+21        342.0  24.964912  32.230001  4.0   8.0  12.0   27.00  190.0
+22        611.0  70.163666  45.955603  5.0  37.0  48.0  118.00  212.0
+23        209.0  21.502392  19.647158  4.0  10.0  16.0   24.00  131.0
+24        631.0  50.123613  47.017531  4.0  23.0  40.0   47.00  251.0
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+### Quickly Creating Summary Counts in Pandas
+
+Let's next count the number of samples for each species. We can do this in a few
+ways, but we'll use `groupby` combined with **a `count()` method**.
+
+```python
+# Count the number of samples by species
+species_counts = samples.groupby('species_id')['record_id'].count()
+print(species_counts)
+```
+
+
+## Quick \& Easy Plotting Data Using Pandas
+
+We can plot our summary stats using Pandas, too.
+
+```python
+# Create a quick bar chart
+species_counts.plot(kind='bar')
+```
+
+![](fig/countPerSpecies.png){alt='Weight by Species Site'}
+
+We can also look at how many animals were captured in each site:
+
+```python
+total_count = samples.groupby('plot_id')['record_id'].nunique()
+# Let's plot that too
+total_count.plot(kind='bar')
+```
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+### Challenge - Plots
+
+1. Create a plot of average weight across all species per site.
+2. Create a plot of total males versus total females for the entire dataset.
+  
+::::::::::::::::::::::: solution
+
+1. `samples.groupby('plot_id')["weight"].mean().plot(kind='bar')`
+
+![](fig/01_chall_bar_meanweight.png){alt='average weight across all species for each plot'}
+
+2. `samples.groupby('sex')["record_id"].count().plot(kind='bar')`
+
+![](fig/01_chall_bar_totalsex.png){alt='total males versus total females for the entire dataset'}
+
+::::::::::::::::::::::::::::::::
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
